@@ -1,0 +1,60 @@
+<html>
+    <head>
+    	<meta charset=utf-8 />
+    </head>
+	<body> 
+       <script>
+        const matrix = [[3,2,1],
+                [9,8,7],
+                [6,5,4],]
+
+let maxRowLength = matrix[0].length
+
+function sortMatrixColumnsDecreasing() {
+    for (let colIndex = 0; colIndex < maxRowLength; colIndex++) {
+        const len = matrix.length;
+        let stop;
+
+        for (let i=0; i < len; i++) {
+            for (let j=0, stop=len-i; j < stop; j++){
+                if (matrix[j+1] === undefined || matrix[j][colIndex] < matrix[j+1][colIndex]){
+                    let temp;
+                    temp = matrix[j][colIndex]
+                    matrix[j][colIndex] = matrix[i][colIndex]
+                    matrix[i][colIndex] = temp
+                }
+            }
+        }
+    }
+}
+
+function sortMatrixRowsIncreasing() {
+    for (let arrayIndex = 0; arrayIndex < matrix.length; arrayIndex++) {
+        const arr = matrix[arrayIndex]
+
+        const len = arr.length;
+        let stop;
+
+        for (let i=0; i < len; i++) {
+            for (let j=0, stop=len-i; j < stop; j++){
+                if (arr[j+1] !== undefined && arr[j] > arr[j+1]){
+                    swap(arr, j, j+1);
+                }
+            }
+        }
+    }
+}
+
+function swap(array, firstIndex, secondIndex) {
+    let temp;
+    temp = array[secondIndex]
+    array[secondIndex] = array[firstIndex]
+    array[firstIndex] = temp
+}
+
+sortMatrixColumnsDecreasing()
+sortMatrixRowsIncreasing()
+console.log(matrix)
+        </script>
+	</body>
+</html>
